@@ -852,7 +852,7 @@ def Easy():
                           foreground="#242424", activeforeground="blue", height=0, width=10, borderwidth=0, bd=0,
                           relief=FLAT,
                           command=lambda: Moderate())
-    mediumbutton.place(x=560, y=120)
+    mediumbutton.place(x=556, y=120)
 
     hardbutton = Button(My_Window, text="HARD", font=("Arial", 12, 'bold'), bg="#E4E7E8",
                         activebackground="#E4E7E8",
@@ -875,35 +875,35 @@ def Easy():
                    foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                    relief=FLAT,
                    command=lambda: easybuttons(1))
-    number1.place(x=1048, y=225)
+    number1.place(x=1045, y=227)
 
     number2 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                      activebackground="#00BF63",
                      foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                      relief=FLAT,
                      command=lambda: easybuttons(2))
-    number2.place(x=1048, y=310)
+    number2.place(x=1045, y=312)
 
     number3 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                      activebackground="#00BF63",
                      foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                      relief=FLAT,
                      command=lambda: easybuttons(3))
-    number3.place(x=1048, y=395)
+    number3.place(x=1045, y=397)
 
     number4 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                      activebackground="#00BF63",
                      foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                      relief=FLAT,
                      command=lambda: easybuttons(4))
-    number4.place(x=1048, y=480)
+    number4.place(x=1045, y=482)
 
     number5 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                      activebackground="#00BF63",
                      foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                      relief=FLAT,
                      command=lambda: easybuttons(5))
-    number5.place(x=1048, y=565)
+    number5.place(x=1045, y=567)
 
     def easybuttons(buttons):
         # Retrieve data from the first table
@@ -1150,7 +1150,7 @@ def Moderate():
                         foreground="#242424", activeforeground="blue", height=0, width=10, borderwidth=0, bd=0,
                         relief=FLAT,
                         command=lambda: Moderate())
-    mediumbutton.place(x=560, y=120)
+    mediumbutton.place(x=556, y=120)
 
     hardbutton = Button(My_Window, text="HARD", font=("Arial", 12, 'bold'), bg="#E4E7E8",
                           activebackground="#E4E7E8",
@@ -1173,35 +1173,35 @@ def Moderate():
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(1))
-    number1.place(x=1048, y=225)
+    number1.place(x=1045, y=227)
 
     number2 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                          activebackground="#00BF63",
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(2))
-    number2.place(x=1048, y=310)
+    number2.place(x=1045, y=312)
 
     number3 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                          activebackground="#00BF63",
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(3))
-    number3.place(x=1048, y=395)
+    number3.place(x=1045, y=397)
 
     number4 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                          activebackground="#00BF63",
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(4))
-    number4.place(x=1048, y=480)
+    number4.place(x=1045, y=482)
 
     number5 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                          activebackground="#00BF63",
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(5))
-    number5.place(x=1048, y=565)
+    number5.place(x=1045, y=567)
 
     def easybuttons(buttons):
         # Retrieve data from the first table
@@ -1382,7 +1382,7 @@ def Hard():
                           foreground="#242424", activeforeground="blue", height=0, width=10, borderwidth=0, bd=0,
                           relief=FLAT,
                           command=lambda: Moderate())
-    mediumbutton.place(x=560, y=120)
+    mediumbutton.place(x=556, y=120)
 
     hardbutton = Button(My_Window, text="HARD", font=("Arial", 12, 'bold'), bg="yellow",
                         activebackground="yellow",
@@ -1405,35 +1405,35 @@ def Hard():
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(1))
-    number1.place(x=1048, y=225)
+    number1.place(x=1045, y=227)
 
     number2 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                          activebackground="#00BF63",
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(2))
-    number2.place(x=1048, y=310)
+    number2.place(x=1045, y=312)
 
     number3 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                          activebackground="#00BF63",
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(3))
-    number3.place(x=1048, y=395)
+    number3.place(x=1045, y=397)
 
     number4 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                          activebackground="#00BF63",
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(4))
-    number4.place(x=1048, y=480)
+    number4.place(x=1045, y=482)
 
     number5 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
                          activebackground="#00BF63",
                          foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
                          relief=FLAT,
                          command=lambda: easybuttons(5))
-    number5.place(x=1048, y=565)
+    number5.place(x=1045, y=567)
 
     def easybuttons(buttons):
         # Retrieve data from the first table
@@ -1601,7 +1601,8 @@ def Hard():
         cursor3.close()
         cursor4.close()
     My_Window.mainloop()
-RegisterPage4()
+
+HomePage()
 
 
 
