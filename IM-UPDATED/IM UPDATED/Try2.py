@@ -22,6 +22,7 @@ My_Window.geometry("1200x675+365+130")
 My_Window.resizable(width=False, height=False)
 My_Window.title("Pag-IBIG Fund")
 
+
 def LoginPage():
     global MIDCode_textbox, password_textbox
     # put background picture
@@ -30,17 +31,16 @@ def LoginPage():
     bg_login.place(x=-2, y=0)
     # logo
 
-
-
     # put textbox for MIDCode
-    MIDCode_textbox = tk.Text(My_Window, height=1, width=25,highlightbackground="#CDFFD8", highlightthickness=1)
+    MIDCode_textbox = tk.Text(My_Window, height=1, width=25, highlightbackground="#CDFFD8", highlightthickness=1)
     MIDCode_textbox.configure(font=("Comic Sans MS", 15))
     MIDCode_textbox.configure(borderwidth=0, relief="ridge", bg='LightSteelBlue1')
     MIDCode_textbox.place(x=80, y=280)
 
     # put textbox for password
     password_textbox = Entry(My_Window, show='*')
-    password_textbox.configure(font=("Comic Sans MS", 15), width=25,highlightbackground="#CDFFD8", highlightthickness=1)
+    password_textbox.configure(font=("Comic Sans MS", 15), width=25, highlightbackground="#CDFFD8",
+                               highlightthickness=1)
     password_textbox.configure(borderwidth=0, relief="ridge", bg='LightSteelBlue1')
     password_textbox.place(x=80, y=370)
 
@@ -68,7 +68,7 @@ def check_credentials(MIDCode, password):
     cursor = cnx.cursor()
 
     query = "SELECT MIDCode, password FROM admin WHERE MIDCode = %s AND password =%s"
-    cursor.execute(query, (MIDCode,password))
+    cursor.execute(query, (MIDCode, password))
     user = cursor.fetchone()
 
     if user:
@@ -78,6 +78,7 @@ def check_credentials(MIDCode, password):
 
     return None
 
+
 def remove_invalid(frame):
     global invalid
 
@@ -85,13 +86,14 @@ def remove_invalid(frame):
     if invalid is not None:
         frame.destroy()
         invalid = None
+
+
 def login_action():
-    global invalid,bg_frame  # Need to use the global variable here as well
+    global invalid, bg_frame  # Need to use the global variable here as well
 
     MIDCode = MIDCode_textbox.get("1.0", tk.END).strip()
     password = password_textbox.get().strip()
     login = check_credentials(MIDCode, password)
-
 
     if login:
         print("Login successful. User ID:", login)
@@ -102,6 +104,7 @@ def login_action():
         bg_frame = Label(My_Window, image=invalid, bg="red", bd=2, highlightbackground="red")
         bg_frame.place(x=120, y=500)
         My_Window.after(3000, remove_invalid, bg_frame)
+
 
 def HomePage():
     # ----- ADD BACKGROUND PICTURE ----- #
@@ -142,72 +145,82 @@ def HomePage():
     button_about.place(x=260, y=15)
 
     sqlbutton = Button(My_Window, text="?", font=("Arial", 10, 'bold'), bg="yellow",
-                          activebackground="yellow",
-                          foreground="#242424", activeforeground="blue", height=0, width=1, borderwidth=0, bd=0,
-                          relief=FLAT,
-                          command=lambda: Easy())
+                       activebackground="yellow",
+                       foreground="#242424", activeforeground="blue", height=0, width=1, borderwidth=0, bd=0,
+                       relief=FLAT,
+                       command=lambda: Easy())
     sqlbutton.place(x=1165, y=635)
     My_Window.mainloop()
+
+
 def AboutPage():
     # ----- ADD BACKGROUND PICTURE ----- #
     file_bg_window = PhotoImage(file="bgabout1.png", master=My_Window)
     bg_window = Label(My_Window, image=file_bg_window, borderwidth=0)
     bg_window.place(x=0, y=0)
 
-
     # ----- ADD REGISTER BUTTON ----- #
-    text_register = Label(My_Window, text="Want to be a Pag-IBIG member?", font=("Arial", 9), bg="#E4E7E8", foreground="black")
+    text_register = Label(My_Window, text="Want to be a Pag-IBIG member?", font=("Arial", 9), bg="#E4E7E8",
+                          foreground="black")
     text_register.place(x=790, y=20)
     button_register = Button(My_Window, text="Register Here", font=("Arial", 16), bg="yellow", activebackground="blue",
-                                 foreground="#242424", activeforeground="white", height=1, width=13, borderwidth=0, bd=0, relief=FLAT,
-                                 command=lambda: Register1())
+                             foreground="#242424", activeforeground="white", height=1, width=13, borderwidth=0, bd=0,
+                             relief=FLAT,
+                             command=lambda: Register1())
     button_register.place(x=980, y=9)
-
-
 
     # ----- ADD NAVIGATION BUTTONS ----- #
     # home button
     button_home = Button(My_Window, text="Home", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="#242424", activeforeground="blue", height=1, width=5, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: HomePage())
+                         foreground="#242424", activeforeground="blue", height=1, width=5, borderwidth=0, bd=0,
+                         relief=FLAT,
+                         command=lambda: HomePage())
     button_home.place(x=95, y=15)
 
     # about us button
-    button_about = Button(My_Window, text="About Us", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="blue", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: AboutPage())
+    button_about = Button(My_Window, text="About Us", font=("Arial", 12, 'bold'), bg="#E4E7E8",
+                          activebackground="#E4E7E8",
+                          foreground="blue", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0,
+                          relief=FLAT,
+                          command=lambda: AboutPage())
     button_about.place(x=170, y=15)
 
     # log in button
-    button_about = Button(My_Window, text="Log In", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="#242424" ,activeforeground="blue", height=1, width=8, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: LoginPage()
-                            )
+    button_about = Button(My_Window, text="Log In", font=("Arial", 12, 'bold'), bg="#E4E7E8",
+                          activebackground="#E4E7E8",
+                          foreground="#242424", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0,
+                          relief=FLAT,
+                          command=lambda: LoginPage()
+                          )
     button_about.place(x=260, y=15)
-
-
 
     # ----- ADD ABOUT US FEATURES BUTTONS ----- #
     # Chairman of the Board
-    button_chairman = Button(My_Window, text="Chairman of the\nBoard", font=("Arial", 13), bg="yellow", activebackground="yellow",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage())
+    button_chairman = Button(My_Window, text="Chairman of the\nBoard", font=("Arial", 13), bg="yellow",
+                             activebackground="yellow",
+                             foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                             relief=FLAT,
+                             command=lambda: AboutPage())
     button_chairman.place(x=45, y=150)
 
     # Mission / Vision
-    button_mission = Button(My_Window, text="Mission / Vision", font=("Arial", 13), bg="white", activebackground="white",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage2())
+    button_mission = Button(My_Window, text="Mission / Vision", font=("Arial", 13), bg="white",
+                            activebackground="white",
+                            foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                            relief=FLAT,
+                            command=lambda: AboutPage2())
     button_mission.place(x=45, y=220)
 
     # Others
     button_others = Button(My_Window, text="Others", font=("Arial", 13), bg="white", activebackground="white",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage3()
-                                )
+                           foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                           relief=FLAT,
+                           command=lambda: AboutPage3()
+                           )
     button_others.place(x=45, y=285)
 
     My_Window.mainloop()
+
 
 # ABOUT US PAGE 2
 def AboutPage2():
@@ -216,60 +229,68 @@ def AboutPage2():
     bg_window = Label(My_Window, image=file_bg_window, borderwidth=0)
     bg_window.place(x=0, y=0)
 
-
     # ----- ADD REGISTER BUTTON ----- #
-    text_register = Label(My_Window, text="Want to be a Pag-IBIG member?", font=("Arial", 9), bg="#E4E7E8", foreground="black")
+    text_register = Label(My_Window, text="Want to be a Pag-IBIG member?", font=("Arial", 9), bg="#E4E7E8",
+                          foreground="black")
     text_register.place(x=790, y=20)
     button_register = Button(My_Window, text="Register Here", font=("Arial", 16), bg="yellow", activebackground="blue",
-                                 foreground="#242424", activeforeground="white", height=1, width=13, borderwidth=0, bd=0, relief=FLAT,
-                                 command=lambda: Register1())
+                             foreground="#242424", activeforeground="white", height=1, width=13, borderwidth=0, bd=0,
+                             relief=FLAT,
+                             command=lambda: Register1())
     button_register.place(x=980, y=9)
-
-
 
     # ----- ADD NAVIGATION BUTTONS ----- #
     # home button
     button_home = Button(My_Window, text="Home", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="#242424", activeforeground="blue", height=1, width=5, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: HomePage())
+                         foreground="#242424", activeforeground="blue", height=1, width=5, borderwidth=0, bd=0,
+                         relief=FLAT,
+                         command=lambda: HomePage())
     button_home.place(x=95, y=15)
 
     # about us button
-    button_about = Button(My_Window, text="About Us", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="blue", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: AboutPage())
+    button_about = Button(My_Window, text="About Us", font=("Arial", 12, 'bold'), bg="#E4E7E8",
+                          activebackground="#E4E7E8",
+                          foreground="blue", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0,
+                          relief=FLAT,
+                          command=lambda: AboutPage())
     button_about.place(x=170, y=15)
 
     # log in button
-    button_about = Button(My_Window, text="Log In", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="#242424" ,activeforeground="blue", height=1, width=8, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: LoginPage()
-                            )
+    button_about = Button(My_Window, text="Log In", font=("Arial", 12, 'bold'), bg="#E4E7E8",
+                          activebackground="#E4E7E8",
+                          foreground="#242424", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0,
+                          relief=FLAT,
+                          command=lambda: LoginPage()
+                          )
     button_about.place(x=260, y=15)
-
-
 
     # ----- ADD ABOUT US FEATURES BUTTONS ----- #
     # Chairman of the Board
-    button_chairman = Button(My_Window, text="Chairman of the\nBoard", font=("Arial", 13), bg="white", activebackground="white",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage())
+    button_chairman = Button(My_Window, text="Chairman of the\nBoard", font=("Arial", 13), bg="white",
+                             activebackground="white",
+                             foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                             relief=FLAT,
+                             command=lambda: AboutPage())
     button_chairman.place(x=45, y=150)
 
     # Mission / Vision
-    button_mission = Button(My_Window, text="Mission / Vision", font=("Arial", 13), bg="yellow", activebackground="yellow",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage2())
+    button_mission = Button(My_Window, text="Mission / Vision", font=("Arial", 13), bg="yellow",
+                            activebackground="yellow",
+                            foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                            relief=FLAT,
+                            command=lambda: AboutPage2())
     button_mission.place(x=45, y=220)
 
     # Others
     button_others = Button(My_Window, text="Others", font=("Arial", 13), bg="white", activebackground="white",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage3()
-                                )
+                           foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                           relief=FLAT,
+                           command=lambda: AboutPage3()
+                           )
     button_others.place(x=45, y=285)
 
     My_Window.mainloop()
+
 
 # ABOUT US PAGE 3
 def AboutPage3():
@@ -278,62 +299,69 @@ def AboutPage3():
     bg_window = Label(My_Window, image=file_bg_window, borderwidth=0)
     bg_window.place(x=0, y=0)
 
-
     # ----- ADD REGISTER BUTTON ----- #
-    text_register = Label(My_Window, text="Want to be a Pag-IBIG member?", font=("Arial", 9), bg="#E4E7E8", foreground="black")
+    text_register = Label(My_Window, text="Want to be a Pag-IBIG member?", font=("Arial", 9), bg="#E4E7E8",
+                          foreground="black")
     text_register.place(x=790, y=20)
     button_register = Button(My_Window, text="Register Here", font=("Arial", 16), bg="yellow", activebackground="blue",
-                                 foreground="#242424", activeforeground="white", height=1, width=13, borderwidth=0, bd=0, relief=FLAT,
-                                 command=lambda: Register1())
+                             foreground="#242424", activeforeground="white", height=1, width=13, borderwidth=0, bd=0,
+                             relief=FLAT,
+                             command=lambda: Register1())
     button_register.place(x=980, y=9)
-
-
 
     # ----- ADD NAVIGATION BUTTONS ----- #
     # home button
     button_home = Button(My_Window, text="Home", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="#242424", activeforeground="blue", height=1, width=5, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: HomePage())
+                         foreground="#242424", activeforeground="blue", height=1, width=5, borderwidth=0, bd=0,
+                         relief=FLAT,
+                         command=lambda: HomePage())
     button_home.place(x=95, y=15)
 
     # about us button
-    button_about = Button(My_Window, text="About Us", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="blue", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: AboutPage())
+    button_about = Button(My_Window, text="About Us", font=("Arial", 12, 'bold'), bg="#E4E7E8",
+                          activebackground="#E4E7E8",
+                          foreground="blue", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0,
+                          relief=FLAT,
+                          command=lambda: AboutPage())
     button_about.place(x=170, y=15)
 
     # log in button
-    button_about = Button(My_Window, text="Log In", font=("Arial", 12, 'bold'), bg="#E4E7E8", activebackground="#E4E7E8",
-                            foreground="#242424" ,activeforeground="blue", height=1, width=8, borderwidth=0, bd=0, relief=FLAT,
-                            command=lambda: LoginPage()
-                            )
+    button_about = Button(My_Window, text="Log In", font=("Arial", 12, 'bold'), bg="#E4E7E8",
+                          activebackground="#E4E7E8",
+                          foreground="#242424", activeforeground="blue", height=1, width=8, borderwidth=0, bd=0,
+                          relief=FLAT,
+                          command=lambda: LoginPage()
+                          )
     button_about.place(x=260, y=15)
-
-
 
     # ----- ADD ABOUT US FEATURES BUTTONS ----- #
     # Chairman of the Board
-    button_chairman = Button(My_Window, text="Chairman of the\nBoard", font=("Arial", 13), bg="white", activebackground="white",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage())
+    button_chairman = Button(My_Window, text="Chairman of the\nBoard", font=("Arial", 13), bg="white",
+                             activebackground="white",
+                             foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                             relief=FLAT,
+                             command=lambda: AboutPage())
     button_chairman.place(x=45, y=150)
 
     # Mission / Vision
-    button_mission = Button(My_Window, text="Mission / Vision", font=("Arial", 13), bg="white", activebackground="white",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage2())
+    button_mission = Button(My_Window, text="Mission / Vision", font=("Arial", 13), bg="white",
+                            activebackground="white",
+                            foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                            relief=FLAT,
+                            command=lambda: AboutPage2())
     button_mission.place(x=45, y=220)
 
     # Others
     button_others = Button(My_Window, text="Others", font=("Arial", 13), bg="yellow", activebackground="yellow",
-                                foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0, relief=FLAT,
-                                command=lambda: AboutPage3())
+                           foreground="#242424", activeforeground="#242424", height=2, width=19, borderwidth=0, bd=0,
+                           relief=FLAT,
+                           command=lambda: AboutPage3())
     button_others.place(x=45, y=285)
 
     My_Window.mainloop()
 
 
-#--------------------Register Page----------------#
+# --------------------Register Page----------------#
 def generate_random_numbers(length):
     random_numbers = ''.join(str(random.randint(0, 9)) for _ in range(length))
     return random_numbers
@@ -354,17 +382,15 @@ def Register1():
 
     random_numbers = generate_random_numbers(10)  # Generate random numbers
 
-
     # put textbox for MIDCode
-    MIDCode_textbox = tk.Text(My_Window,height=1, width=10, highlightbackground="#97DBF1", highlightthickness=1)
+    MIDCode_textbox = tk.Text(My_Window, height=1, width=10, highlightbackground="#97DBF1", highlightthickness=1)
     MIDCode_textbox.configure(font=("Comic Sans MS", 15))
-    MIDCode_textbox.configure(borderwidth=0, relief="ridge", bd= 0, bg='#97DBF1')
+    MIDCode_textbox.configure(borderwidth=0, relief="ridge", bd=0, bg='#97DBF1')
     MIDCode_textbox.place(x=540, y=380)
 
-
-
     display_button = tk.Button(My_Window, text="Generate", command=display_output)
-    display_button.configure(font=("Zing Rust Base", 13, 'bold'), width=8, highlightbackground="#004AAD",fg= "white",activeforeground= "yellow",
+    display_button.configure(font=("Zing Rust Base", 13, 'bold'), width=8, highlightbackground="#004AAD", fg="white",
+                             activeforeground="yellow",
                              highlightthickness=1, activebackground="#004AAD")
     display_button.configure(borderwidth=0, relief="ridge", bg='#004AAD')
     display_button.place(x=473, y=460)
@@ -380,17 +406,35 @@ def Register1():
         RegisterPage()
 
     button = Button(My_Window, text="Next", font=("Zing Rust Base", 13, 'bold'), relief="flat", height=1, width=5,
-                    bg="#004AAD",bd=0,borderwidth=0, foreground= "white",
-                    activebackground="#004AAD",activeforeground="yellow", command=save_login)
+                    bg="#004AAD", bd=0, borderwidth=0, foreground="white",
+                    activebackground="#004AAD", activeforeground="yellow", command=save_login)
     button.place(x=655, y=460)
 
     My_Window.mainloop()
+
+#sss
+def on_validate_input2(text):
+    if len(text) <= 10:  # Change 10 to the desired character limit
+        return True
+    else:
+        return False
+#TIN
+def on_validate_input(text):
+    if text == "" or len(text) <= 9:  # Change 10 to the desired character limit
+
+        return True
+    else:
+        return False
 
 
 def RegisterPage():
     global My_Window, MIDCode_textbox, name_textbox, bdate_textbox, bplace_textbox, address_textbox, sex, spouse_textbox
     global status_textbox, citizenship_textbox, father_textbox, mother_textbox, sss_textbox, tin_textbox, email_textbox
     global phone_textbox, heirname_textbox, heirbday_textbox
+
+
+    validationsss = My_Window.register(on_validate_input2)
+    validationtin = My_Window.register(on_validate_input)
 
     # change bg picture
     file_bg_window = ImageTk.PhotoImage(file="bgreg1.png")
@@ -402,21 +446,17 @@ def RegisterPage():
                             cursor="hand2")
     personaldetails.place(x=50, y=195)
 
-
     workdetails = Label(My_Window, text="Work Details", font=("Arial", 13), bg="white", fg="black",
                         cursor="hand2")
     workdetails.place(x=50, y=255)
-
 
     employer = Label(My_Window, text="Employer Details", font=("Arial", 13), bg="white", fg="black",
                      cursor="hand2")
     employer.place(x=50, y=315)
 
-
     payment = Label(My_Window, text="Payment Details", font=("Arial", 13), bg="white", fg="black",
                     cursor="hand2")
     payment.place(x=50, y=375)
-
 
     Home = Label(My_Window, text="Back to Home Page", font=("Arial", 13), bg="white", fg="black",
                  cursor="hand2")
@@ -447,14 +487,14 @@ def RegisterPage():
     # radiobuttons for sex
     sex = tk.StringVar()
     male_button = ctk.CTkRadioButton(My_Window, text="Male ", font=("Arial", 15, 'bold'), text_color="white",
-                                          bg_color="#060606",
-                                          fg_color="yellow", height=1, width=8, variable=sex,
-                                          value='Male')
+                                     bg_color="#060606",
+                                     fg_color="yellow", height=1, width=8, variable=sex,
+                                     value='Male')
     male_button.place(x=910, y=320)
     female_button = ctk.CTkRadioButton(My_Window, text="Female ", font=("Arial", 15, 'bold'), text_color="white",
-                                          bg_color="#060606",
-                                          fg_color="yellow", height=1, width=5, variable=sex,
-                                          value='Female')
+                                       bg_color="#060606",
+                                       fg_color="yellow", height=1, width=5, variable=sex,
+                                       value='Female')
     female_button.place(x=1000, y=320)
 
     # textbox for spouse
@@ -483,12 +523,14 @@ def RegisterPage():
     mother_textbox.place(x=620, y=400)
 
     # textbox for SSS
-    sss_textbox = Text(My_Window, height=1, width=10)
+    sss_textbox = Entry(My_Window, width=10)
+    sss_textbox.configure(validate="key", validatecommand=(validationsss, "%P"))
     sss_textbox.configure(font=("Arial", 15))
     sss_textbox.place(x=338, y=483)
 
     # textbox for TIN
-    tin_textbox = Text(My_Window, height=1, width=15)
+    tin_textbox = Entry(My_Window, width=15)
+    tin_textbox.configure(validate="key", validatecommand=(validationtin, "%P"))
     tin_textbox.configure(font=("Arial", 15))
     tin_textbox.place(x=475, y=483)
 
@@ -565,6 +607,7 @@ def RegisterPage():
 
     My_Window.mainloop()
 
+
 def RegisterPage2():
     global My_Window, emplno_textbox, occ_textbox, empstat_textbox, dateemp_textbox, income_textbox, empid_textbox
 
@@ -578,21 +621,17 @@ def RegisterPage2():
                             cursor="hand2")
     personaldetails.place(x=50, y=195)
 
-
     workdetails = Label(My_Window, text="Work Details", font=("Arial", 13), bg="yellow", fg="black",
                         cursor="hand2")
     workdetails.place(x=50, y=255)
-
 
     employer = Label(My_Window, text="Employer Details", font=("Arial", 13), bg="#EFEFEF", fg="black",
                      cursor="hand2")
     employer.place(x=50, y=315)
 
-
     payment = Label(My_Window, text="Payment Details", font=("Arial", 13), bg="#EFEFEF", fg="black",
                     cursor="hand2")
     payment.place(x=50, y=375)
-
 
     Home = Label(My_Window, text="Back to Home Page", font=("Arial", 13), bg="#EFEFEF", fg="black",
                  cursor="hand2")
@@ -630,7 +669,6 @@ def RegisterPage2():
     empid_textbox.configure(font=("Arial", 15))
     empid_textbox.place(x=665, y=405)
 
-
     def save_details():
         query = "INSERT INTO workdetails(EmployeeNumber,Occupation,EmploymentStatus,DateEmployed,MonthlyIncome, EmployerID) VALUES (%s,%s,%s,%s,%s,%s)"
         values = (emplno_textbox.get("1.0", "end-1c"),
@@ -643,16 +681,12 @@ def RegisterPage2():
         cursor.execute(query, values)
         cnx.commit()
 
-
         RegisterPage3(empid_textbox.get("1.0", "end-1c"))
-
 
     save_button = Button(My_Window, text="Next", command=save_details)
     save_button.place(x=1100, y=600)
 
     My_Window.mainloop()
-
-
 
 
 def RegisterPage3(emp_id):
@@ -668,21 +702,17 @@ def RegisterPage3(emp_id):
                             cursor="hand2")
     personaldetails.place(x=50, y=195)
 
-
     workdetails = Label(My_Window, text="Work Details", font=("Arial", 13), bg="#EFEFEF", fg="black",
                         cursor="hand2")
     workdetails.place(x=50, y=255)
-
 
     employer = Label(My_Window, text="Employer Details", font=("Arial", 13), bg="yellow", fg="black",
                      cursor="hand2")
     employer.place(x=50, y=315)
 
-
     payment = Label(My_Window, text="Payment Details", font=("Arial", 13), bg="#EFEFEF", fg="black",
                     cursor="hand2")
     payment.place(x=50, y=375)
-
 
     Home = Label(My_Window, text="Back to Home Page", font=("Arial", 13), bg="#EFEFEF", fg="black",
                  cursor="hand2")
@@ -735,21 +765,17 @@ def RegisterPage4():
                             cursor="hand2")
     personaldetails.place(x=50, y=195)
 
-
     workdetails = Label(My_Window, text="Work Details", font=("Arial", 13), bg="#EFEFEF", fg="black",
                         cursor="hand2")
     workdetails.place(x=50, y=255)
-
 
     employer = Label(My_Window, text="Employer Details", font=("Arial", 13), bg="#EFEFEF", fg="black",
                      cursor="hand2")
     employer.place(x=50, y=315)
 
-
     payment = Label(My_Window, text="Payment Details", font=("Arial", 13), bg="#FEFC02", fg="black",
                     cursor="hand2")
     payment.place(x=50, y=375)
-
 
     Home = Label(My_Window, text="Back to Home Page", font=("Arial", 13), bg="#EFEFEF", fg="black",
                  cursor="hand2")
@@ -809,6 +835,7 @@ def RegisterPage4():
 
     My_Window.mainloop()
 
+
 def generate_random_numbers(length):
     random_numbers = ''.join(str(random.randint(0, 9)) for _ in range(length))
     return random_numbers
@@ -819,12 +846,12 @@ def display_output():
     MIDCode_textbox.delete('1.0', tk.END)  # Clear previous content
     MIDCode_textbox.insert('1.0', random_numbers)  # Insert new numbers
 
+
 def afterlogin():
     # put background picture
     file_bg_login = tk.PhotoImage(file="afterlogin.png")
     bg_login = tk.Label(My_Window, image=file_bg_login)
     bg_login.place(x=-2, y=0)
-
 
     # log in button
     button_about = Button(My_Window, text="Go Back", font=("Arial", 12, 'bold'), bg="#00BF63",
@@ -833,6 +860,7 @@ def afterlogin():
                           command=lambda: HomePage())
     button_about.place(x=65, y=625)
     My_Window.mainloop()
+
 
 def Easy():
     # put background picture
@@ -866,15 +894,15 @@ def Easy():
     img = image.resize((50, 50))
     my_img = ImageTk.PhotoImage(img)
     label = Button(My_Window, image=my_img, bg="#0F102B", activebackground="#0F102B", relief="flat",
-                       command=HomePage)
+                   command=HomePage)
     label.pack()
     label.place(x=30, y=30)
 
     number1 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                   activebackground="#00BF63",
-                   foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                   relief=FLAT,
-                   command=lambda: easybuttons(1))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(1))
     number1.place(x=1045, y=227)
 
     number2 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
@@ -960,7 +988,7 @@ def Easy():
             tree2.pack(fill=BOTH, expand=True)
             # Define the column names for the first table
             column_names2 = ["EmployeeNumber", "Occupation", "EmploymentStatus", "DateEmployed", "MonthlyIncome",
-                                 "EmployerID"]
+                             "EmployerID"]
 
             # Determine the number of columns for the first table
             num_columns2 = len(column_names2)
@@ -1008,11 +1036,11 @@ def Easy():
             tree4.pack(fill=BOTH, expand=True)
 
             # Define the column names for the first table
-            column_names4 = ["MIDNumber","Employee Number","Membership Category","MS Payment"]
+            column_names4 = ["MIDNumber", "Employee Number", "Membership Category", "MS Payment"]
 
             # Determine the number of columns for the first table
             num_columns4 = len(column_names4)
-        
+
             # Set the columns for the first table in the Treeview widget
             tree4["columns"] = tuple(f"column{i + 1}" for i in range(num_columns4))
             tree4.heading("#0", text=column_names4[0])
@@ -1031,7 +1059,8 @@ def Easy():
 
         elif buttons == 2:
             cursor = cnx.cursor()
-            cursor.execute("SELECT Name, Status FROM memberdetails WHERE Status <> 'Single'") # Replace "your_table" with the actual table name
+            cursor.execute(
+                "SELECT Name, Status FROM memberdetails WHERE Status <> 'Single'")  # Replace "your_table" with the actual table name
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
@@ -1056,7 +1085,8 @@ def Easy():
 
         elif buttons == 3:
             cursor = cnx.cursor()
-            cursor.execute("SELECT Name, PhoneNumber FROM memberdetails WHERE PhoneNumber LIKE '0949%'")  # Replace "your_table" with the actual table name
+            cursor.execute(
+                "SELECT Name, PhoneNumber FROM memberdetails WHERE PhoneNumber LIKE '0949%'")  # Replace "your_table" with the actual table name
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
@@ -1079,7 +1109,8 @@ def Easy():
 
         elif buttons == 4:
             cursor = cnx.cursor()
-            cursor.execute("SELECT MIDNumber, Name, PhoneNumber FROM memberdetails WHERE SEX ='Male'")  # Replace "your_table" with the actual table name
+            cursor.execute(
+                "SELECT MIDNumber, Name, PhoneNumber FROM memberdetails WHERE SEX ='Male'")  # Replace "your_table" with the actual table name
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
@@ -1128,8 +1159,8 @@ def Easy():
         cursor2.close()
         cursor3.close()
         cursor4.close()
-    My_Window.mainloop()
 
+    My_Window.mainloop()
 
 
 def Moderate():
@@ -1139,24 +1170,24 @@ def Moderate():
     bg_login.place(x=-2, y=0)
 
     easybutton = Button(My_Window, text="EASY", font=("Arial", 12, 'bold'), bg="#E4E7E8",
-                      activebackground="#E4E7E8",
-                      foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                      relief=FLAT,
-                      command=lambda: Easy())
+                        activebackground="#E4E7E8",
+                        foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                        relief=FLAT,
+                        command=lambda: Easy())
     easybutton.place(x=190, y=120)
 
     mediumbutton = Button(My_Window, text="MODERATE", font=("Arial", 12, 'bold'), bg="yellow",
-                        activebackground="yellow",
-                        foreground="#242424", activeforeground="blue", height=0, width=10, borderwidth=0, bd=0,
-                        relief=FLAT,
-                        command=lambda: Moderate())
+                          activebackground="yellow",
+                          foreground="#242424", activeforeground="blue", height=0, width=10, borderwidth=0, bd=0,
+                          relief=FLAT,
+                          command=lambda: Moderate())
     mediumbutton.place(x=556, y=120)
 
     hardbutton = Button(My_Window, text="HARD", font=("Arial", 12, 'bold'), bg="#E4E7E8",
-                          activebackground="#E4E7E8",
-                          foreground="#242424", activeforeground="blue", height=0, width=10, borderwidth=0, bd=0,
-                          relief=FLAT,
-                          command=lambda: Hard())
+                        activebackground="#E4E7E8",
+                        foreground="#242424", activeforeground="blue", height=0, width=10, borderwidth=0, bd=0,
+                        relief=FLAT,
+                        command=lambda: Hard())
     hardbutton.place(x=960, y=120)
 
     # logo
@@ -1164,43 +1195,43 @@ def Moderate():
     img = image.resize((50, 50))
     my_img = ImageTk.PhotoImage(img)
     label = Button(My_Window, image=my_img, bg="#0F102B", activebackground="#0F102B", relief="flat",
-                       command=HomePage)
+                   command=HomePage)
     label.pack()
     label.place(x=30, y=30)
 
     number1 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(1))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(1))
     number1.place(x=1045, y=227)
 
     number2 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(2))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(2))
     number2.place(x=1045, y=312)
 
     number3 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(3))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(3))
     number3.place(x=1045, y=397)
 
     number4 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(4))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(4))
     number4.place(x=1045, y=482)
 
     number5 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(5))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(5))
     number5.place(x=1045, y=567)
 
     def easybuttons(buttons):
@@ -1260,20 +1291,20 @@ def Moderate():
         elif buttons == 2:
             cursor = cnx.cursor()
             cursor.execute(
-                    "SELECT AVG(TIMESTAMPDIFF(YEAR, Birthdate, CURDATE())) AS AverageAge FROM memberdetails;")  # Replace "your_table" with the actual table name
+                "SELECT AVG(TIMESTAMPDIFF(YEAR, Birthdate, CURDATE())) AS AverageAge FROM memberdetails;")  # Replace "your_table" with the actual table name
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
-                # Determine the number of columns
+            # Determine the number of columns
             num_columns = len(column_names)
 
-                # Set the columns in the Treeview widget
+            # Set the columns in the Treeview widget
             tree1["columns"] = tuple(f"column{i + 1}" for i in range(num_columns))
             tree1.heading("#0", text=column_names[0])
             for i, column_name in enumerate(column_names[1:]):
                 tree1.heading(f"column{i + 1}", text=column_name)
                 tree1.column("#0", width=90, minwidth=85)
-                    # Adjust the column width based on the content
+                # Adjust the column width based on the content
                 tree1.column(f"column{i + 1}", width=82, minwidth=80, stretch=True)
                 tree1.heading(f"column{i + 1}", text=column_name, anchor=CENTER)
 
@@ -1286,20 +1317,20 @@ def Moderate():
         elif buttons == 3:
             cursor = cnx.cursor()
             cursor.execute(
-                    "SELECT Name, Birthdate FROM memberdetails WHERE MONTH(Birthdate) = MONTH(CURDATE());")  # Replace "your_table" with the actual table name
+                "SELECT Name, Birthdate FROM memberdetails WHERE MONTH(Birthdate) = MONTH(CURDATE());")  # Replace "your_table" with the actual table name
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
-                # Determine the number of columns
+            # Determine the number of columns
             num_columns = len(column_names)
 
-                # Set the columns in the Treeview widget
+            # Set the columns in the Treeview widget
             tree1["columns"] = tuple(f"column{i + 1}" for i in range(num_columns))
             tree1.heading("#0", text=column_names[0])
             for i, column_name in enumerate(column_names[1:]):
                 tree1.heading(f"column{i + 1}", text=column_name)
                 tree1.column("#0", width=90, minwidth=85)
-                    # Adjust the column width based on the content
+                # Adjust the column width based on the content
                 tree1.column(f"column{i + 1}", width=82, minwidth=80, stretch=True)
                 tree1.heading(f"column{i + 1}", text=column_name, anchor=CENTER)
 
@@ -1310,22 +1341,22 @@ def Moderate():
         elif buttons == 4:
             cursor = cnx.cursor()
             cursor.execute(
-                    "SELECT Name, MonthlyIncome FROM workdetails as w, memberdetails as m, payment as p, employer e "
-                    "WHERE w.EmployeeNumber = p.EmployeeNumber AND m.MIDNumber = p.EmployeeNumber AND w.EmployerID = e.EmployerID "
-                    "ORDER BY MonthlyIncome DESC;")  # Replace "your_table" with the actual table name
+                "SELECT Name, MonthlyIncome FROM workdetails as w, memberdetails as m, payment as p, employer e "
+                "WHERE w.EmployeeNumber = p.EmployeeNumber AND m.MIDNumber = p.EmployeeNumber AND w.EmployerID = e.EmployerID "
+                "ORDER BY MonthlyIncome DESC;")  # Replace "your_table" with the actual table name
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
-                # Determine the number of columns
+            # Determine the number of columns
             num_columns = len(column_names)
 
-                # Set the columns in the Treeview widget
+            # Set the columns in the Treeview widget
             tree1["columns"] = tuple(f"column{i + 1}" for i in range(num_columns))
             tree1.heading("#0", text=column_names[0])
             for i, column_name in enumerate(column_names[1:]):
                 tree1.heading(f"column{i + 1}", text=column_name)
                 tree1.column("#0", width=90, minwidth=85)
-                    # Adjust the column width based on the content
+                # Adjust the column width based on the content
                 tree1.column(f"column{i + 1}", width=82, minwidth=80, stretch=True)
                 tree1.heading(f"column{i + 1}", text=column_name, anchor=CENTER)
 
@@ -1341,16 +1372,16 @@ def Moderate():
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
-                # Determine the number of columns
+            # Determine the number of columns
             num_columns = len(column_names)
 
-                # Set the columns in the Treeview widget
+            # Set the columns in the Treeview widget
             tree1["columns"] = tuple(f"column{i + 1}" for i in range(num_columns))
             tree1.heading("#0", text=column_names[0])
             for i, column_name in enumerate(column_names[1:]):
                 tree1.heading(f"column{i + 1}", text=column_name)
                 tree1.column("#0", width=90, minwidth=85)
-                    # Adjust the column width based on the content
+                # Adjust the column width based on the content
                 tree1.column(f"column{i + 1}", width=82, minwidth=80, stretch=True)
                 tree1.heading(f"column{i + 1}", text=column_name, anchor=CENTER)
 
@@ -1363,7 +1394,10 @@ def Moderate():
         cursor2.close()
         cursor3.close()
         cursor4.close()
+
     My_Window.mainloop()
+
+
 def Hard():
     # put background picture
     file_bg_login = tk.PhotoImage(file="hard.png")
@@ -1396,43 +1430,43 @@ def Hard():
     img = image.resize((50, 50))
     my_img = ImageTk.PhotoImage(img)
     label = Button(My_Window, image=my_img, bg="#0F102B", activebackground="#0F102B", relief="flat",
-                       command=HomePage)
+                   command=HomePage)
     label.pack()
     label.place(x=30, y=30)
 
     number1 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(1))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(1))
     number1.place(x=1045, y=227)
 
     number2 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(2))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(2))
     number2.place(x=1045, y=312)
 
     number3 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(3))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(3))
     number3.place(x=1045, y=397)
 
     number4 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(4))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(4))
     number4.place(x=1045, y=482)
 
     number5 = Button(My_Window, text="SHOW", font=("Arial", 12, 'bold'), bg="#00BF63",
-                         activebackground="#00BF63",
-                         foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
-                         relief=FLAT,
-                         command=lambda: easybuttons(5))
+                     activebackground="#00BF63",
+                     foreground="#242424", activeforeground="blue", height=0, width=5, borderwidth=0, bd=0,
+                     relief=FLAT,
+                     command=lambda: easybuttons(5))
     number5.place(x=1045, y=567)
 
     def easybuttons(buttons):
@@ -1491,23 +1525,23 @@ def Hard():
         elif buttons == 2:
             cursor = cnx.cursor()
             cursor.execute(
-                    "SELECT mspayment, name, month(birthdate) as m_birthmonth, heirsname, month(heirsbirthdate) as h_birthmonth "
-                    "FROM memberdetails as m, payment as p "
-                    "WHERE p.MIDNumber = m.MIDNumber AND (month(birthdate) = month(heirsbirthdate));")  # Replace "your_table" with the actual table name
+                "SELECT mspayment, name, month(birthdate) as m_birthmonth, heirsname, month(heirsbirthdate) as h_birthmonth "
+                "FROM memberdetails as m, payment as p "
+                "WHERE p.MIDNumber = m.MIDNumber AND (month(birthdate) = month(heirsbirthdate));")  # Replace "your_table" with the actual table name
 
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
-                # Determine the number of columns
+            # Determine the number of columns
             num_columns = len(column_names)
 
-                # Set the columns in the Treeview widget
+            # Set the columns in the Treeview widget
             tree1["columns"] = tuple(f"column{i + 1}" for i in range(num_columns))
             tree1.heading("#0", text=column_names[0])
             for i, column_name in enumerate(column_names[1:]):
                 tree1.heading(f"column{i + 1}", text=column_name)
                 tree1.column("#0", width=90, minwidth=85)
-                    # Adjust the column width based on the content
+                # Adjust the column width based on the content
                 tree1.column(f"column{i + 1}", width=82, minwidth=80, stretch=True)
                 tree1.heading(f"column{i + 1}", text=column_name, anchor=CENTER)
 
@@ -1520,22 +1554,22 @@ def Hard():
         elif buttons == 3:
             cursor = cnx.cursor()
             cursor.execute(
-                    "SELECT sex ,name, homeaddress, AVG(monthlyincome) as average_monthlyincome "
-                    "FROM memberdetails as m, workdetails as w, payment p "
-                    "WHERE w.EmployeeNumber = p.EmployeeNumber AND p.MIDNumber = m.MIDNumber AND (m.HomeAddress LIKE '%Manila%') GROUP BY sex, name, homeaddress;")  # Replace "your_table" with the actual table name
+                "SELECT sex ,name, homeaddress, AVG(monthlyincome) as average_monthlyincome "
+                "FROM memberdetails as m, workdetails as w, payment p "
+                "WHERE w.EmployeeNumber = p.EmployeeNumber AND p.MIDNumber = m.MIDNumber AND (m.HomeAddress LIKE '%Manila%') GROUP BY sex, name, homeaddress;")  # Replace "your_table" with the actual table name
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
-                # Determine the number of columns
+            # Determine the number of columns
             num_columns = len(column_names)
 
-                # Set the columns in the Treeview widget
+            # Set the columns in the Treeview widget
             tree1["columns"] = tuple(f"column{i + 1}" for i in range(num_columns))
             tree1.heading("#0", text=column_names[0])
             for i, column_name in enumerate(column_names[1:]):
                 tree1.heading(f"column{i + 1}", text=column_name)
                 tree1.column("#0", width=90, minwidth=85)
-                    # Adjust the column width based on the content
+                # Adjust the column width based on the content
                 tree1.column(f"column{i + 1}", width=82, minwidth=80, stretch=True)
                 tree1.heading(f"column{i + 1}", text=column_name, anchor=CENTER)
 
@@ -1546,23 +1580,23 @@ def Hard():
         elif buttons == 4:
             cursor = cnx.cursor()
             cursor.execute(
-                    "SELECT membershipcategory, COUNT(*) as Count "
-                    "FROM workdetails as w, payment p, memberdetails m "
-                    "WHERE w.EmployeeNumber = p.EmployeeNumber AND p.MIDNumber = m.MIDNumber AND (w.monthlyincome > 15000)"
-                    "GROUP BY membershipcategory;")  # Replace "your_table" with the actual table name
+                "SELECT membershipcategory, COUNT(*) as Count "
+                "FROM workdetails as w, payment p, memberdetails m "
+                "WHERE w.EmployeeNumber = p.EmployeeNumber AND p.MIDNumber = m.MIDNumber AND (w.monthlyincome > 15000)"
+                "GROUP BY membershipcategory;")  # Replace "your_table" with the actual table name
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
-                # Determine the number of columns
+            # Determine the number of columns
             num_columns = len(column_names)
 
-                # Set the columns in the Treeview widget
+            # Set the columns in the Treeview widget
             tree1["columns"] = tuple(f"column{i + 1}" for i in range(num_columns))
             tree1.heading("#0", text=column_names[0])
             for i, column_name in enumerate(column_names[1:]):
                 tree1.heading(f"column{i + 1}", text=column_name)
                 tree1.column("#0", width=90, minwidth=85)
-                    # Adjust the column width based on the content
+                # Adjust the column width based on the content
                 tree1.column(f"column{i + 1}", width=82, minwidth=80, stretch=True)
                 tree1.heading(f"column{i + 1}", text=column_name, anchor=CENTER)
 
@@ -1578,16 +1612,16 @@ def Hard():
             column_names = [column[0] for column in cursor.description]
             rows = cursor.fetchall()
 
-                # Determine the number of columns
+            # Determine the number of columns
             num_columns = len(column_names)
 
-                # Set the columns in the Treeview widget
+            # Set the columns in the Treeview widget
             tree1["columns"] = tuple(f"column{i + 1}" for i in range(num_columns))
             tree1.heading("#0", text=column_names[0])
             for i, column_name in enumerate(column_names[1:]):
                 tree1.heading(f"column{i + 1}", text=column_name)
                 tree1.column("#0", width=90, minwidth=85)
-                    # Adjust the column width based on the content
+                # Adjust the column width based on the content
                 tree1.column(f"column{i + 1}", width=82, minwidth=80, stretch=True)
                 tree1.heading(f"column{i + 1}", text=column_name, anchor=CENTER)
 
@@ -1600,7 +1634,9 @@ def Hard():
         cursor2.close()
         cursor3.close()
         cursor4.close()
+
     My_Window.mainloop()
+
 
 HomePage()
 
